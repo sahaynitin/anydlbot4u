@@ -76,7 +76,7 @@ async def trim(bot, update):
             o = await cult_small_video(saved_file_path, Config.DOWNLOAD_LOCATION, start_time, end_time)
             logger.info(o)
             if o is not None:'''
-            await bot.edit_message_text(
+        await bot.edit_message_text(
                     chat_id=update.chat.id,
                     text=Translation.UPLOAD_START,
                     message_id=a.message_id
