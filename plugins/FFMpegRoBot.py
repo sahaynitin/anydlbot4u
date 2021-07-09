@@ -29,7 +29,7 @@ from helper_funcs.help_Nekmo_ffmpeg import take_screen_shot, cult_small_video
 
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
-
+from moviepy.editor import *
 
 @pyrogram.Client.on_message(pyrogram.Filters.command(["ffmpegrobot"]))
 async def ffmpegrobot_ad(bot, update):
@@ -59,20 +59,23 @@ async def trim(bot, update):
         )
         return
     TRChatBase(update.from_user.id, update.text, "trim")
-    saved_file_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".FFMpegRoBot.mkv"
+    saved_file_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".FFMpeg.mkv"
     if os.path.exists(saved_file_path):
         a = await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.DOWNLOAD_START,
             reply_to_message_id=update.message_id
         )
-        commands = update.command
+        video_clip = VideoFileClip(saved_file_path).cutout(0, 10)
+        video_clip.write_videofile(saved_file_path+'cut.mp4')
+        video_file=saved_file_path+"cut.mp4"
+        '''commands = update.command
         if len(commands) == 3:
             # output should be video
             cmd, start_time, end_time = commands
             o = await cult_small_video(saved_file_path, Config.DOWNLOAD_LOCATION, start_time, end_time)
             logger.info(o)
-            if o is not None:
+            if o is not None:'''
                 await bot.edit_message_text(
                     chat_id=update.chat.id,
                     text=Translation.UPLOAD_START,
@@ -81,7 +84,7 @@ async def trim(bot, update):
                 c_time = time.time()
                 await bot.send_video(
                     chat_id=update.chat.id,
-                    video=o,
+                    video=video_file,
                     # caption=description,
                     # duration=duration,
                     # width=width,
@@ -97,7 +100,7 @@ async def trim(bot, update):
                         c_time
                     )
                 )
-                os.remove(o)
+                os.remove(video_file)
                 await bot.edit_message_text(
                     chat_id=update.chat.id,
                     text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG,
