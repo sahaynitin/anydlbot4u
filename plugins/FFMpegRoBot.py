@@ -108,7 +108,7 @@ async def trim(bot, update):
                     disable_web_page_preview=True,
                     message_id=a.message_id
                 )
-        elif len(commands) == 2:
+            elif len(commands) == 2:
             # output should be screenshot
             cmd, start_time = commands
             o = await take_screen_shot(saved_file_path, Config.DOWNLOAD_LOCATION, start_time)
