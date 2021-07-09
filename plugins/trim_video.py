@@ -10,7 +10,8 @@ logger = logging.getLogger(__name__)
 
 import os
 import time
-import moviepy.editor as pp
+from moviepy.editor import *
+from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
 
 # the secret configuration specific things
 if bool(os.environ.get("WEBHOOK", False)):
@@ -33,15 +34,11 @@ from hachoir.parser import createParser
 from PIL import Image
 
 
-@pyrogram.Client.on_message(pyrogram.Filters.command(["c2a"]))
-async def convert_to_audio(bot, update):
-    if update.from_user.id not in Config.AUTH_USERS:
-        await bot.delete_messages(
-            chat_id=update.chat.id,
-            message_ids=update.message_id,
-            revoke=True
-        )
-        return
+@pyrogram.Client.on_message(pyrogram.Filters.command(["trim1"]))
+async def convert_to_video(bot, update):
+    text=message.text
+    return
+    
     TRChatBase(update.from_user.id, update.text, "c2a")
     if (update.reply_to_message is not None) and (update.reply_to_message.media is not None) :
         download_location = Config.DOWNLOAD_LOCATION + "/"
@@ -63,20 +60,26 @@ async def convert_to_audio(bot, update):
         )
         if the_real_download_location is not None:
             a=await bot.edit_message_text(
-                text=f"Video Download Successfully, now trying to convert into Audio. \n\n⌛️Wait for some time.",
+                text=f"Video Download Successfully, now trying to trim it. \n\n⌛️Wait for some time.",
                 chat_id=update.chat.id,
                 message_id=ab.message_id
             )
             # don't care about the extension
             # convert video to audio format
+            text = message.text.split(" ")[1]
+            text2=text.split(':')
+            start_time=text2[0]
+            end_time=text2[1]
             f_name = the_real_download_location.rsplit('/',1)[-1]
             clip = pp.VideoFileClip(the_real_download_location)
-            clip.audio.write_audiofile(f_name+'.mp3')
-            video_file_location = f_name+'.mp3'
-            logger.info(audio_file_location)
+            clip.audio.write_audiofile(f_name+'trimmed.mp4')
+            video_file_location = f_name+'trimmed.mp4'
+            clip = VideoFileClip(the_real_download_location).subclip(start_time, end_time)
+            clip.write_videofile(video_file_location)
+            logger.info(video_file_location)
             # get the correct width, height, and duration for videos greater than 10MB
             # ref: message from @BotSupport
-            metadata = extractMetadata(createParser(audio_file_location))
+            metadata = extractMetadata(createParser(video_file_location))
             if metadata.has("duration"):
                 duration = metadata.get('duration').seconds
             '''thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
@@ -125,9 +128,8 @@ async def convert_to_audio(bot, update):
                 )
             )
             try:
-                os.remove(thumb_image_path)
                 os.remove(the_real_download_location)
-                os.remove(audio_file_location)
+                os.remove(video_file_location)
             except:
                 pass
             await bot.edit_message_text(
