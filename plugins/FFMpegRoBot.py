@@ -30,6 +30,7 @@ from helper_funcs.help_Nekmo_ffmpeg import take_screen_shot, cult_small_video
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from moviepy.editor import *
+from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
 
 @pyrogram.Client.on_message(pyrogram.Filters.command(["ffmpegrobot"]))
 async def ffmpegrobot_ad(bot, update):
@@ -66,7 +67,7 @@ async def trim(bot, update):
             text=Translation.DOWNLOAD_START,
             reply_to_message_id=update.message_id
         )
-        video_clip = VideoFileClip(saved_file_path).cutout(0, 10)
+        video_clip = VideoFileClip(saved_file_path).subclip(0, 60)
         video_clip.write_videofile(saved_file_path+'cut.mp4')
         video_file=saved_file_path+"cut.mp4"
         '''commands = update.command
@@ -81,8 +82,8 @@ async def trim(bot, update):
                     text=Translation.UPLOAD_START,
                     message_id=a.message_id
                 )
-                c_time = time.time()
-                await bot.send_video(
+        c_time = time.time()
+        await bot.send_video(
                     chat_id=update.chat.id,
                     video=video_file,
                     # caption=description,
@@ -100,8 +101,8 @@ async def trim(bot, update):
                         c_time
                     )
                 )
-                os.remove(video_file)
-                await bot.edit_message_text(
+        os.remove(video_file)
+        await bot.edit_message_text(
                     chat_id=update.chat.id,
                     text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG,
                     disable_web_page_preview=True,
