@@ -34,7 +34,7 @@ from hachoir.parser import createParser
 from PIL import Image
 
 
-@pyrogram.Client.on_message(pyrogram.Filters.command(["c2a"]))
+@pyrogram.Client.on_message(pyrogram.Filters.command(["trim1"]))
 async def convert_to_audio(bot, update):
     if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
@@ -47,6 +47,7 @@ async def convert_to_audio(bot, update):
 @pyrogram.Client.on_message(pyrogram.Filters.command(["trim1"]))
 async def convert_to_video(bot, update):
     text=message.text
+    return
     
     TRChatBase(update.from_user.id, update.text, "c2a")
     if (update.reply_to_message is not None) and (update.reply_to_message.media is not None) :
@@ -75,7 +76,7 @@ async def convert_to_video(bot, update):
             )
             # don't care about the extension
             # convert video to audio format
-            text = message.text.split(" ")[1]
+            text = message.text.split(" ", 1)[1]
             text2=text.split(':')
             start_time=text2[0]
             end_time=text2[1]
@@ -83,7 +84,7 @@ async def convert_to_video(bot, update):
             clip = pp.VideoFileClip(the_real_download_location)
             clip.audio.write_audiofile(f_name+'trimmed.mp4')
             video_file_location = f_name+'trimmed.mp4'
-            clip = VideoFileClip(the_real_download_location).subclip(start_time, end_time)
+            clip = VideoFileClip(the_real_download_location).subclip(20, 30)
             clip.write_videofile(video_file_location)
             logger.info(video_file_location)
             # get the correct width, height, and duration for videos greater than 10MB
