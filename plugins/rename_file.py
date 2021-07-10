@@ -71,9 +71,9 @@ async def rename_doc(bot, update):
             )
         logger.info(the_real_download_location)
         thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
-            if not os.path.exists(thumb_image_path):
+        if not os.path.exists(thumb_image_path):
                 thumb_image_path = None
-            else:
+        else:
                 width = 1280
                 height = 720
                 metadata = extractMetadata(createParser(thumb_image_path))
@@ -91,8 +91,8 @@ async def rename_doc(bot, update):
                 img.resize((320, height))
                 img.save(thumb_image_path, "JPEG")
                 # https://pillow.readthedocs.io/en/3.1.x/reference/Image.html#create-thumbnails
-            c_time = time.time()
-            await bot.send_document(
+        c_time = time.time()
+        await bot.send_document(
                 chat_id=update.chat.id,
                 document=new_file_name,
                 thumb=thumb_image_path,
@@ -106,12 +106,12 @@ async def rename_doc(bot, update):
                     c_time
                 )
             )
-            try:
+        try:
                 os.remove(new_file_name)
                 os.remove(thumb_image_path)
-            except:
+        except:
                 pass
-            await bot.edit_message_text(
+        await bot.edit_message_text(
                 text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG,
                 chat_id=update.chat.id,
                 message_id=a.message_id,
