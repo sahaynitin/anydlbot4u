@@ -50,7 +50,7 @@ async def ffmpegrobot_ad(bot, update):
     )
 
 
-@pyrogram.Client.on_message(pyrogram.Filters.command(["trim1"]))
+@pyrogram.Client.on_message(pyrogram.Filters.command(["tri"]))
 async def trim(bot, update):
     if update.from_user.id not in Config.AUTH_USERS:
         await bot.delete_messages(
