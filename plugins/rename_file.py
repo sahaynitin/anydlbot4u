@@ -66,9 +66,9 @@ async def rename_doc(bot, update):
             )
         )
         await a.delete()
-        if the_real_download_location is not None:
+        if the_real_download_location is None:
             await bot.send_message(
-                text=Translation.SAVED_RECVD_DOC_FILE,
+                text=f"Error, File Not Found",
                 chat_id=update.chat.id,
                 reply_to_message_id=update.message_id
             )
@@ -83,7 +83,8 @@ async def rename_doc(bot, update):
             os.rename(the_real_download_location, new_file_name)
             ab = await bot.send_message(
                 text=Translation.UPLOAD_START,
-                chat_id=update.chat.id
+                chat_id=update.chat.id,
+                reply_to_message_id=update.reply_to_message.message_id,
             )
             logger.info(the_real_download_location)
             thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
@@ -130,7 +131,7 @@ async def rename_doc(bot, update):
             await bot.edit_message_text(
                 text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG,
                 chat_id=update.chat.id,
-                message_id=a.message_id,
+                message_id=ab.message_id,
                 disable_web_page_preview=True
             )
     else:
