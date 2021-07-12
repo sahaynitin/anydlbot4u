@@ -72,6 +72,7 @@ async def rename_doc(bot, update):
                 chat_id=update.chat.id,
                 reply_to_message_id=update.message_id
             )
+        else:
             if "IndianMovie" in the_real_download_location:
                 await bot.edit_message_text(
                     text=Translation.RENAME_403_ERR,
