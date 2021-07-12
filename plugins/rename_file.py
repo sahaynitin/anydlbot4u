@@ -23,7 +23,6 @@ from translation import Translation
 import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
-from helper_funcs.chat_base import TRChatBase
 from helper_funcs.display_progress import progress_for_pyrogram
 
 from hachoir.metadata import extractMetadata
@@ -41,11 +40,13 @@ async def rename_doc(bot, update):
             revoke=True
         )
         return
-    TRChatBase(update.from_user.id, update.text, "rename")
+    def random_char(y):
+       return ''.join(random.choice(string.ascii_letters) for x in range(y))
+    ran = (random_char(5))  
     if (" " in update.text) and (update.reply_to_message is not None):
         cmd, file_name = update.text.split(" ", 1)
         description = Translation.CUSTOM_CAPTION_UL_FILE
-        download_location = Config.DOWNLOAD_LOCATION + "/"
+        download_location = Config.DOWNLOAD_LOCATION + "/" + ran + "/"
         a = await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.DOWNLOAD_FILE,
@@ -62,18 +63,31 @@ async def rename_doc(bot, update):
                 c_time
             )
         )
-        new_file_name = download_location + file_name
-        os.rename(the_real_download_location, new_file_name)
-        await bot.edit_message_text(
+        if the_real_download_location is not None:
+            await bot.edit_message_text(
+                text=Translation.SAVED_RECVD_DOC_FILE,
+                chat_id=update.chat.id,
+                message_id=a.message_id
+            )
+            if "IndianMovie" in the_real_download_location:
+                await bot.edit_message_text(
+                    text=Translation.RENAME_403_ERR,
+                    chat_id=update.chat.id,
+                    message_id=a.message_id
+                )
+                return
+            new_file_name = download_location + file_name
+            os.rename(the_real_download_location, new_file_name)
+            await bot.edit_message_text(
                 text=Translation.UPLOAD_START,
                 chat_id=update.chat.id,
                 message_id=a.message_id
             )
-        logger.info(the_real_download_location)
-        thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
-        if not os.path.exists(thumb_image_path):
+            logger.info(the_real_download_location)
+            thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
+            if not os.path.exists(thumb_image_path):
                 thumb_image_path = None
-        else:
+            else:
                 width = 1280
                 height = 720
                 metadata = extractMetadata(createParser(thumb_image_path))
@@ -91,8 +105,8 @@ async def rename_doc(bot, update):
                 img.resize((320, height))
                 img.save(thumb_image_path, "JPEG")
                 # https://pillow.readthedocs.io/en/3.1.x/reference/Image.html#create-thumbnails
-        c_time = time.time()
-        await bot.send_document(
+            c_time = time.time()
+            await bot.send_document(
                 chat_id=update.chat.id,
                 document=new_file_name,
                 thumb=thumb_image_path,
@@ -106,12 +120,12 @@ async def rename_doc(bot, update):
                     c_time
                 )
             )
-        try:
+            try:
                 os.remove(new_file_name)
                 os.remove(thumb_image_path)
-        except:
+            except:
                 pass
-        await bot.edit_message_text(
+            await bot.edit_message_text(
                 text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG,
                 chat_id=update.chat.id,
                 message_id=a.message_id,
