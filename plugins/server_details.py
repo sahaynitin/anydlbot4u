@@ -29,6 +29,6 @@ async def start(client, message):
         [InlineKeyboardButton(
             "Try", url="https://t.me/TGBotsCollectionbot")]
     ])
-    welcomed = f"---Server Details---\n<b>CPU:</b> {psutil.cpu_percent()}%\n<b>RAM:</b> {psutil.virtual_memory().percent}%\n<b>DISK:</b> {psutil.disk_usage('/').percent}%\n Bot Uptime : {bot_uptime}"
+    welcomed = f"--Server Details--\n<b>CPU:</b> {psutil.cpu_percent()}%\n<b>RAM:</b> {psutil.virtual_memory().percent}%\n<b>DISK:</b> {psutil.disk_usage('/').percent}%\n Bot Uptime : {bot_uptime}"
     await message.reply_text(welcomed, reply_markup=joinButton)
     raise StopPropagation
