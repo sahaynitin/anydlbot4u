@@ -2,7 +2,7 @@ import asyncio
 import os
 from pyrogram import Client, filters
 from pyrogram.types import CallbackQuery
-from plugins.youtube_dl_button import download_directory
+from plugins.youtube_dl_button import pgress
 from helper_funcs.display_progress import humanbytes
 
 if bool(os.environ.get("ENV", False)):
@@ -12,9 +12,5 @@ else:
 
 @Client.on_callback_query(filters.regex(r'^progress$'))
 async def ytdl_progress(bot, cb: CallbackQuery):
-    file_siz = humanbytes(os.getsize(download_directory))
-    try:
-        os.getsize(download_directory)
-    except Exception:
-        pass
+    file_siz = pgress()
     await cb.answer(f"Downloaded file size : {file_siz}", True)
