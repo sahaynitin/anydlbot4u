@@ -2,7 +2,7 @@ import asyncio
 import os
 from pyrogram import Client, filters
 from pyrogram.types import CallbackQuery
-from youtube_dl_button import download_directory
+from plugins.youtube_dl_button import download_directory
 from helper_funcs.display_progress import humanbytes
 
 if bool(os.environ.get("ENV", False)):
