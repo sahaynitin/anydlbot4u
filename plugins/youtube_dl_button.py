@@ -157,7 +157,9 @@ async def youtube_dl_call_back(bot, update):
         stderr=asyncio.subprocess.PIPE,
     )
     # Wait for the subprocess to finish
-    UPDATE_LINK = InlineKeyboardMarkup([ [InlineKeyboardButton("Check Progress", callback_data='progress')], ]) 
+    global download_directory    
+    
+    UPDATE_LINK = InlineKeyboardMarkup([ [InlineKeyboardButton("Check Progress", callback_data='progress')], ])
     stdout, stderr = await process.communicate()
     e_response = stderr.decode().strip()
     t_response = stdout.decode().strip()
