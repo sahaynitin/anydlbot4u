@@ -12,10 +12,9 @@ else:
 
 @Client.on_callback_query(filters.regex(r'^progress$'))
 async def ytdl_progress(bot, cb: CallbackQuery):
-    file_siz = os.getsize(download_directory)
-    file_sz = humanbytes(file_siz)
+    file_siz = humanbytes(os.getsize(download_directory))
     try:
-        os.getsize(download_directory))
+        os.getsize(download_directory)
     except Exception:
         pass
-    await cb.answer(f"Downloaded file size : {file_sz}", True)
+    await cb.answer(f"Downloaded file size : {file_siz}", True)
