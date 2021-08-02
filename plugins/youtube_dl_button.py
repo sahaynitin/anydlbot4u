@@ -101,7 +101,7 @@ async def youtube_dl_call_back(bot, update):
     await bot.edit_message_text(
         text=Translation.DOWNLOAD_START,
         chat_id=update.message.chat.id,
-        reply_markup=UPDATE_LINK,
+        reply_markup=InlineKeyboardMarkup([ [InlineKeyboardButton("Check Progress", callback_data='progress')], ]),
         message_id=update.message.message_id
     )
     description = Translation.CUSTOM_CAPTION_UL_FILE
@@ -160,7 +160,6 @@ async def youtube_dl_call_back(bot, update):
     )
     # Wait for the subprocess to finish  
     
-    UPDATE_LINK = InlineKeyboardMarkup([ [InlineKeyboardButton("Check Progress", callback_data='progress')], ])
     stdout, stderr = await process.communicate()
     e_response = stderr.decode().strip()
     t_response = stdout.decode().strip()
