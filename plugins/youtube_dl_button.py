@@ -364,8 +364,13 @@ async def youtube_dl_call_back(bot, update):
                 message_id=update.message.message_id,
                 disable_web_page_preview=True
             )
-
-@Client.on_callback_query(filters.regex(r'^progress$'))
+    
+@pyrogram.Client.on_callback_query(filters.regex(r'^progress$'))
 async def ytdl_progress(bot, cb: CallbackQuery):
-    file_siz = humanbytes(file_size)
+    file_siz = humanbytes(os.getsize(download_directory))
+    try:
+        os.getsize(download_directory)
+    except Exception:
+        pass
+    #file_siz = pgress()
     await cb.answer(f"Downloaded file size : {file_siz}", True)
