@@ -370,6 +370,8 @@ async def youtube_dl_call_back(bot, update):
 @pyrogram.Client.on_callback_query(filters.regex(r'^progress$'))
 async def ytdl_progress(bot, cb: CallbackQuery):
     file_siz = humanbytes(os.path.getsize(download_directory))
+    print('Testing'*10)
+    await cb.answer(f"Downloaded file size : {file_siz}", True)
     try:
         os.path.getsize(download_directory)
     except Exception:
@@ -377,4 +379,4 @@ async def ytdl_progress(bot, cb: CallbackQuery):
         print('Error aa gaya')
         pass
     #file_siz = pgress()
-    await cb.answer(f"Downloaded file size : {file_siz}", True)
+    
