@@ -39,6 +39,17 @@ from helper_funcs.help_Nekmo_ffmpeg import generate_screen_shots
 from pyrogram import Client, filters
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
+@pyrogram.Client.on_callback_query(filters.regex(r'^progress$'))
+async def ytdl_progress(bot, cb: CallbackQuery):
+    file_siz = humanbytes(os.path.getsize(download_directory))
+    try:
+        os.path.getsize(download_directory)
+    except Exception:
+        pass
+    #file_siz = pgress()
+    await cb.answer(f"Downloaded file size : {file_siz}", True)
+
+
 async def youtube_dl_call_back(bot, update):
     cb_data = update.data
     # youtube_dl extractors
@@ -365,12 +376,3 @@ async def youtube_dl_call_back(bot, update):
                 disable_web_page_preview=True
             )
     
-@pyrogram.Client.on_callback_query(filters.regex(r'^progress$'))
-async def ytdl_progress(bot, cb: CallbackQuery):
-    file_siz = humanbytes(os.path.getsize(download_directory))
-    try:
-        os.path.getsize(download_directory)
-    except Exception:
-        pass
-    #file_siz = pgress()
-    await cb.answer(f"Downloaded file size : {file_siz}", True)
