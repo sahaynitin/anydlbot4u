@@ -45,6 +45,7 @@ async def ytdl_progress(bot, cb: CallbackQuery):
     try:
         os.path.getsize(download_directory)
     except Exception:
+      await cb.answer("File Not Found", True)
         pass
     #file_siz = pgress()
     await cb.answer(f"Downloaded file size : {file_siz}", True)
