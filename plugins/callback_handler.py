@@ -1,4 +1,3 @@
-'''
 import asyncio
 import os
 from pyrogram import Client, filters
@@ -9,9 +8,9 @@ if bool(os.environ.get("ENV", False)):
 else:
     from config import Config
 
-
+ads="PROGRESS..."
 @Client.on_callback_query(filters.regex(r'^progress$'))
 async def ytdl_progress(bot, cb: CallbackQuery):
-    file_siz = pgress()
-    await cb.answer(f"Downloaded file size : {file_siz}", True)
-'''
+    print('Pgreasc'*10)
+    await cb.answer(f"{ads}", True)
+
