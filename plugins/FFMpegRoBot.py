@@ -69,6 +69,7 @@ async def trim(bot, update):
         )
         video_clip = VideoFileClip(saved_file_path).subclip(0, 60)
         video_clip.write_videofile(saved_file_path+'cut.mp4')
+        print("Video Clip Created")
         video_file=saved_file_path+"cut.mp4"
         '''commands = update.command
         if len(commands) == 3:
@@ -83,6 +84,7 @@ async def trim(bot, update):
                     message_id=a.message_id
                 )
         c_time = time.time()
+        print("Uploading...")
         await bot.send_video(
                     chat_id=update.chat.id,
                     video=video_file,
