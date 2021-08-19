@@ -27,6 +27,7 @@ import requests
 import subprocess
 import time
 import re
+import json
 
 # the secret configuration specific things
 if bool(os.environ.get("WEBHOOK", False)):
