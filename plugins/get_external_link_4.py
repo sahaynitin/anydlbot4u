@@ -94,7 +94,7 @@ async def get_link(bot, update):
             "-F", f"file=@\"{after_download_file_name}\"", url
         ]
         await bot.edit_message_text(
-            text=Translation.GO_FILE_UPLOAD,
+            text=f"Uploading... \n\n TO File.io",
             chat_id=update.chat.id,
             message_id=a.message_id
         )
@@ -116,7 +116,7 @@ async def get_link(bot, update):
             t_response_ray = t_response_array.rsplit('"')
         await bot.edit_message_text(
             chat_id=update.chat.id,
-            text= AFTER_GET_DL_LINK.format(download_file_name_1, s0ze, t_response_ray[9]),
+            text= Translation.AFTER_GET_DL_LINK.format(download_file_name_1, s0ze, t_response_ray[9]),
             parse_mode="html",
             reply_markup=InlineKeyboardMarkup([
         [InlineKeyboardButton("Download Link", url=t_response_ray[9])],
