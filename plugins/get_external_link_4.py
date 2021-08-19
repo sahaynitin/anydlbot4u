@@ -81,7 +81,6 @@ async def get_link(bot, update):
         download_file_name = download_file_name_1.rsplit(".",1)[0]
         url= 'https://file.io'
         s0ze = os.path.getsize(after_download_file_name)
-        t0st = f"File Name : {}\n File Size : {} \n\n Link : {}"
         if after_download_file_name is None:
             await bot.edit_message_text(
                 text=Translation.FILE_NOT_FOUND,
@@ -117,7 +116,7 @@ async def get_link(bot, update):
             t_response_ray = t_response_array.rsplit('"')
         await bot.edit_message_text(
             chat_id=update.chat.id,
-            text= t0st.format(download_file_name_1, s0ze, t_response_ray[9])
+            text= AFTER_GET_DL_LINK.format(download_file_name_1, s0ze, t_response_ray[9])
             parse_mode="html",
             reply_markup=InlineKeyboardMarkup([
         [InlineKeyboardButton("Download Link", url=t_response_ray[9])],
