@@ -44,6 +44,7 @@ python bot.py
 - getlink1 - ⚡Get anonfiles.com link of telegram file.
 - getlink2 - ⚡Get bayfiles.com link of telegram file.
 - getlink3 - ⚡Get gofile.io link of telegram file.
+- getlink4 - ⚡Get file.io link of telegram file.
 - storageinfo - 💾Use this command to check saved file.
 - generatecustomthumbnail - !Not Working
 - downloadmedia - 🔽Reply with the file you want to upload to the bot server.
