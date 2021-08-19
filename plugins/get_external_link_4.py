@@ -129,8 +129,8 @@ async def get_link(bot, update):
         except:
             pass
     else:
-        await bot.edit_message_text(
+        await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.REPLY_TO_DOC_GET_LINK,
-            message_id=a.message_id
+            reply_to_message_id=update.message_id
         )
