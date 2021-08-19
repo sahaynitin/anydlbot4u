@@ -94,7 +94,7 @@ async def get_link(bot, update):
             "-F", f"file=@\"{after_download_file_name}\"", url
         ]
         await bot.edit_message_text(
-            text=f"Uploading... \n\n TO File.io",
+            text=FILE_IO_UPLOAD,
             chat_id=update.chat.id,
             message_id=a.message_id
         )
@@ -113,13 +113,13 @@ async def get_link(bot, update):
             logger.info(t_response)
             t_response_array = t_response.decode("UTF-8").split("\n")[-1].strip()
             #t_response_ray = re.findall("(?P<url>https?://[^\s]+)", t_response_array)
-            t_response_ray = t_response_array.rsplit('"')
+            t_response_ray = json.loads(t_response_array)
         await bot.edit_message_text(
             chat_id=update.chat.id,
-            text= Translation.AFTER_GET_DL_LINK.format(download_file_name_1, s0ze, t_response_ray[9]),
+            text= Translation.AFTER_GET_FILE_IO_LINK.format(t_response_ray['name'], s0ze, t_response_ray['link'], t_response_ray['mimeType'], t_response_ray['expires']),
             parse_mode="html",
             reply_markup=InlineKeyboardMarkup([
-        [InlineKeyboardButton("Download Link", url=t_response_ray[9])],
+        [InlineKeyboardButton("Download Link", url=t_response_ray['link'])],
     ]),
             message_id=a.message_id,
             disable_web_page_preview=True
