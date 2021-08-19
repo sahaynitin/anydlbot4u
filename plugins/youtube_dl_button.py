@@ -366,12 +366,12 @@ async def youtube_dl_call_back(bot, update):
                 disable_web_page_preview=True
             )
     
-
+'''
 def d_directory():
     y = humanbytes(os.path.getsize(download_directory))
     return y
 
-'''
+
 @pyrogram.Client.on_callback_query(filters.regex(r'^progress$'))
 async def ytdl_progress(bot, cb: CallbackQuery):
     file_siz = humanbytes(os.path.getsize(download_directory))
