@@ -81,7 +81,7 @@ async def get_link(bot, update):
         download_file_name_1 = after_download_file_name.rsplit("/",1)[-1]
         download_file_name = download_file_name_1.rsplit(".",1)[0]
         url= 'https://file.io'
-        s0ze = os.path.getsize(after_download_file_name)
+        s0ze = humanbytes(os.path.getsize(after_download_file_name))
         if after_download_file_name is None:
             await bot.edit_message_text(
                 text=Translation.FILE_NOT_FOUND,
