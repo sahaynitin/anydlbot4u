@@ -2,7 +2,7 @@ import asyncio
 import os
 from pyrogram import Client, filters
 from pyrogram.types import CallbackQuery
-from plugins.youtube_dl_button import d_directory
+#from plugins.youtube_dl_button import d_directory
 
 '''
 ads = d_directory()
