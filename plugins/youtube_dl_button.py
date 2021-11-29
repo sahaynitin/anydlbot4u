@@ -27,7 +27,7 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 from pyrogram.types import InputMediaPhoto
 from helper_funcs.display_progress import progress_for_pyrogram, humanbytes
 # https://stackoverflow.com/a/37631799/4723940
-from database.access import clinton
+from database.access import client
 from PIL import Image
 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
