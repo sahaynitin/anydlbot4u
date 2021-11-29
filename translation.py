@@ -4,40 +4,40 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 class Translation(object):
 
     START_TEXT = """
-<b>Hey</b><b> {} </b>
+Hey {} 
 
-<b>I am Telegram ANYDl X Bot</b>
+I am Telegram Fastest ANYDl X Bot
 
-<b>I can Upload Any Link in File or Video</b>
+I can Upload Any Link in File or Video
 
-<b>Use Help Command to Know How to Use me</b>
+Use Help Command to Know How to Use me
 
-<b>Made With 💕 By</b><b> @Tellybots_4u</b>
+Made With 💕 By @Tellybots_4u</b>
 """
     HELP_TEXT = """
-<b>Link to Media or File</b>
-➠ <b>Send a link for upload to telegram file or media.</b>
+Link to Media or File
+➠ Send a link for upload to telegram file or media.
 
-<b>Set Thumbnail</b>
-➠ <b>Send a photo to make it as permanent thumbnail.</b>
+Set Thumbnail
+➠ Send a photo to make it as permanent thumbnail.
 
-<b>Deleting Thumbnail</b>
-➠ Send /delthumb to delete thumbnail.</b>
+Deleting Thumbnail
+➠ Send /delthumb to delete thumbnail.
 
-<b>Show Thumbnail</b>
-➠ Send /showthumb to view custom thumbnail.</b>
+Show Thumbnail
+➠ Send /showthumb to view custom thumbnail.
 
-<b>Made With 💕 By</b><b> @Tellybots_4u</b>
+Made With 💕 By @Tellybots_4u
 """
     ABOUT_TEXT = """
- **🤖 <b>Bot :** URL Uploader</b>\n
- **👲 <b>Developer :** [Tellybots_4u](https://telegram.me/tellybots_4u)</b>\n
- **👥 <b>Channel :** [Tellybots_4u](https://telegram.me/tellybots_4u)</b>\n
- **❄️ <b>Credits :** Everyone in this journey</b>\n
- **🍴 <b>Source :** [Click here](https://t.me/tellybots_digital)</b>\n
- **📝 <b>Language :** [Python3](https://python.org)</b>\n
- **📚 <b>Library :** [Pyrogram v1.2.0](https://pyrogram.org)</b>\n
- **🌟 <b>Server :** [Heroku](https://heroku.com)</b>\n
+ **🤖 Bot :** URL Uploader</b>\n
+ **👲 Developer :** [Tellybots_4u](https://telegram.me/tellybots_4u)\n
+ **👥 Channel :** [Tellybots_4u](https://telegram.me/tellybots_4u)\n
+ **❄️ Credits :** Everyone in this journey\n
+ **🍴 Source :** [Click here](https://t.me/tellybots_digital)\n
+ **📝 Language :** [Python3](https://python.org)\n
+ **📚 Library :** [Pyrogram v1.2.0](https://pyrogram.org)\n
+ **🌟 Server :** [Heroku](https://heroku.com)\n
 """
     START_BUTTONS = InlineKeyboardMarkup(
         [[
@@ -92,21 +92,6 @@ URL | filename | username | password"""
     NO_VOID_FORMAT_FOUND = "ERROR... {}"
     FILE_NOT_FOUND = "Error, File not Found!!"
     USER_ADDED_TO_DB = "User <a href='tg://user?id={}'>{}</a> added to {} till {}."
-    CURENT_PLAN_DETAILS = """About you...
---------
-Telegram ID : <code>{}</code>
-"""
-    HELP_USER = """Hii I am <b>Multipurpose bot</b> and I can perform many tasks.
-    
-1.) Send url (Link|New Name with Extension).
-2.) Send Custom Thumbnail (Optional).
-3.) Select the button.
-   SVideo - Give File as video with Screenshots
-   DFile  - Give File with Screenshots
-   Video  - Give File as video without Screenshots
-   DFile  - Give File without Screenshots
-
-"""
     REPLY_TO_DOC_GET_LINK = "Reply to a Telegram media to get High Speed Direct Download Link"
     REPLY_TO_DOC_FOR_C2V = "Reply to a Telegram media to convert"
     REPLY_TO_DOC_FOR_SCSS = "Reply to a Telegram media to get screenshots"
@@ -125,7 +110,7 @@ Telegram ID : <code>{}</code>
     ERR_ONLY_TWO_MEDIA_IN_ALBUM = "Media Album should contain only two photos. Please re-send the media album, and then try again, or send only two photos in an album."
     INVALID_UPLOAD_BOT_URL_FORMAT = "URL format is incorrect. make sure your url starts with either http:// or https://. You can set custom file name using the format link | file_name.extension"
     ABUSIVE_USERS = "You are not allowed to use this bot. If you think this is a mistake, please check /me to remove this restriction."
-    FF_MPEG_RO_BOT_AD_VER_TISE_MENT = "Join : @TGBotsCollectionbot \n For the list of Telegram bots. "
+    FF_MPEG_RO_BOT_AD_VER_TISE_MENT = "Join @Tellybots_4u. "
     EXTRACT_ZIP_INTRO_ONE = "Send a compressed file first, Then reply /unzip command to the file."
     EXTRACT_ZIP_INTRO_THREE = "Analyzing received file. ⚠️ This might take some time. Please be patient. "
     UNZIP_SUPPORTED_EXTENSIONS = ("zip", "rar")
