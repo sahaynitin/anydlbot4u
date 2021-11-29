@@ -62,7 +62,7 @@ Made With 💕 By @Tellybots_4u
         InlineKeyboardButton('⛔ Close', callback_data='close')
         ]]
     )
-        IFLONG_FILE_NAME = " Only 64 characters can be named . "
+    
     RENAME_403_ERR = "Sorry. You are not permitted to rename this file."
     ABS_TEXT = " Please don't be selfish."
     UPGRADE_TEXT = "<b>No preminum plans available in this bot </b>  /help for Details"
