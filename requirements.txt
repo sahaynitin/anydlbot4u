@@ -4,7 +4,7 @@ hachoir
 numpy
 Pillow
 Pyrogram
-
+chatbase
 requests
 psutil
 tgcrypto
