@@ -12,7 +12,7 @@ I can Upload Any Link in File or Video
 
 Use Help Command to Know How to Use me
 
-Made With 💕 By @Tellybots_4u</b>
+Made With 💕 By @Tellybots_4u
 """
     HELP_TEXT = """
 Link to Media or File
@@ -30,7 +30,7 @@ Show Thumbnail
 Made With 💕 By @Tellybots_4u
 """
     ABOUT_TEXT = """
- **🤖 Bot :** URL Uploader</b>\n
+ **🤖 Bot :** URL Uploader\n
  **👲 Developer :** [Tellybots_4u](https://telegram.me/tellybots_4u)\n
  **👥 Channel :** [Tellybots_4u](https://telegram.me/tellybots_4u)\n
  **❄️ Credits :** Everyone in this journey\n
