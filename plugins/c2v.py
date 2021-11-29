@@ -39,8 +39,7 @@ from PIL import Image
 @Client.on_message(pyrogram.filters.command(["c2v"]))
 async def convert_to_video(bot, update):   
             return  
-    if update.reply_to_message is not None:
-        
+
         download_location = Config.DOWNLOAD_LOCATION + "/"
         file_name=download_location
         a = await bot.send_message(
