@@ -19,8 +19,8 @@ from database.adduser import AddUser
 from translation import Translation
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 from pyrogram import filters
-from pyrogram import Client as Clinton
-from database.access import clinton
+from pyrogram import Client
+from database.access import client
 from helper_funcs.display_progress import humanbytes
 from helper_funcs.help_uploadbot import DownLoadFile
 from helper_funcs.display_progress import progress_for_pyrogram, humanbytes, TimeFormatter
@@ -29,7 +29,7 @@ from hachoir.parser import createParser
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import UserNotParticipant
 
-@Clinton.on_message(filters.private & filters.regex(pattern=".*http.*"))
+@Client.on_message(filters.private & filters.regex(pattern=".*http.*"))
 async def echo(bot, update):
     await AddUser(bot, update)
     imog = await update.reply_text("Processing...⚡", reply_to_message_id=update.message_id)
