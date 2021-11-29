@@ -6,7 +6,7 @@ class Translation(object):
     START_TEXT = """
 <b>Hey</b><b> {} </b>
 
-<b>I am Telegram Most Powerful Url Uploader Bot</b>
+<b>I am Telegram ANYDl X Bot</b>
 
 <b>I can Upload Any Link in File or Video</b>
 
